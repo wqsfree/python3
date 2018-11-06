@@ -76,6 +76,7 @@
 - 使用类访问绑定类的方法时，如果类方法中需要访问当前类的成员，可以通过__calss__
 
 class Teacher():
+
     name = "小明"
     age = 19
     
@@ -93,6 +94,7 @@ class Teacher():
         print(__class__.name, __class__.age)
         
 t = Teacher()
+
 t.say()
 # 调用绑定类函数使用类名
 Teacher.sayAgain()
