@@ -73,7 +73,7 @@
 - self在对象的方法中表示当前对象本身，如果通过对象调用一个方法，那么该对象会自动传入到当前方法的第一个参数里面
 - self并不是关键字，只是一个用于接受对象的普通参数，理论上可以用任何一个普通变量名代替
 - 方法中self形参的方法成为非绑定类的方法，可以通过对象访问，没有self的是绑定类的方法，只能通过类访问
-- 使用类访问绑定类的方法时，如果类方法中需要访问当前类的成员，可以通过__calss__
+- 使用类访问绑定类的方法时，如果类方法中需要访问当前类的成员，可以通过__calss__成员名来访问
 
 class Teacher():
 
@@ -98,6 +98,38 @@ t = Teacher()
 t.say()
 # 调用绑定类函数使用类名
 Teacher.sayAgain()
+
+# 关于self的案例
+
+class A():
+    name = "liuying"
+    age = 19
+    
+    def __init__(self):
+        self.name = "aaaa"
+        self.age = 200
+    
+    def say(self):
+        print(self.name)
+        print(self.age)
+        
+class B():
+    name = "bbbbb"
+    age = 90
+
+a = A()
+# 此时，系统会默认把a作为第一个参数传入函数
+a.say()
+
+# 此时，self被a替换
+A.say(a)
+# 同样可以把A作为参数传入
+A.say(A)
+
+# 此时，传入的是类实例B，因为B具有name的和age属性，所以不会报错
+A.say(B)
+
+# 以上代码，利用了鸭子模型
 
 
 
